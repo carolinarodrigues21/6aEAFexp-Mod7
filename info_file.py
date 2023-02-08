@@ -1,4 +1,7 @@
 def getNpad(filename):
+    '''Returns the number of the pad of a RPC that a muon hit, considering the bottom and the top RPC. 
+    It returns also the number of the event (hit).
+    '''
     nPads_RPC1, nPads_RPC2, Nevento = [], [], []
     with open(filename) as file:
         for line in file:
@@ -11,6 +14,7 @@ def getNpad(filename):
     return nPads_RPC1, nPads_RPC2, Nevento
 
 def LineColPad(Npad):
+    "Returns the line and column of a pad"
     if Npad%8 == 0:
         col = Npad/8
         line = 8
@@ -20,6 +24,9 @@ def LineColPad(Npad):
     return line,col
 
 def getINFO(filename):
+    '''Main function that returns a list of the numbers of the pad that happend a hit of a RPC at the top and at the bottom. 
+    It also returns a list with the line and column of those pads.
+    '''
     Npad_top, Npad_bot, Nevento = getNpad(filename)
     line_top, col_top = [], []
     line_bot, col_bot = [], []
