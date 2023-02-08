@@ -4,7 +4,7 @@ import numpy as np
 
 from info_file import * 
 from efficiency_simulation import *
-from N_obs import *
+from hist2D_and_values import *
 from flux import *
 
 #RPC Parameters
@@ -21,8 +21,9 @@ Npad_top, Npad_bot, line_top, col_top, line_bot, col_bot = getINFO(data_file_nam
 
 v_max = 100                                         # max value for the color range
 hist2D_save_path = 'results\example.png'     # relative path for saving the 2D histogram for that file
+title = 'Title'
 
-N_obs_top, N_obs_bot = N_obs_RPC(col_top, col_bot, line_top, line_bot, v_max, hist2D_save_path)
+N_obs_top = hist2D_and_values(col_top,line_top, v_max, hist2D_save_path, title)
 eff_nEvents_1M = True
 
 if eff_nEvents_1M:
