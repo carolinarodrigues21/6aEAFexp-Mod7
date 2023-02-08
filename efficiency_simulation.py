@@ -2,12 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-h = 203 # Final measured height between rpcs [cm]
-Lx = 15 # Pad size [cm]
-Ly = 19 # Pad size [cm]
-x_lim = 120 # Sensible area [cm]
-y_lim = 152 # Sensible area [cm]
-
 def generate_angle(angle = True):
     """
     Generate the two angles corresponding to the muon direction, one zenith angle 
@@ -24,10 +18,7 @@ def generate_angle(angle = True):
         
         azimuthal_angle = random.uniform(0,2*np.pi)
         
-        return azimuthal_angle
-
-#generate_angle(False)  
-
+        return azimuthal_angle 
 
 def coordinates_pad(pad_number):
     """
@@ -68,8 +59,6 @@ def hit_evt_pad(coord_pad:tuple,ze_angle:float,az_angle:float):
         hit = True
     
     return hit
-
-#hit_evt_pad((119,149,180),0,4.430693526565017)
 
 def efficiency_sim(n_events):
     """
