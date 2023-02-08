@@ -1,4 +1,4 @@
-def getNpad(filename):
+def getNpad(filename:str):
     '''Returns the number of the pad of a RPC that a muon hit, considering the bottom and the top RPC. 
     It returns also the number of the event (hit).
     '''
@@ -23,7 +23,7 @@ def LineColPad(Npad):
         line = Npad%8
     return line,col
 
-def getINFO(filename):
+def getINFO(filename:str):
     '''Main function that returns a list of the numbers of the pad that happend a hit of a RPC at the top and at the bottom. 
     It also returns a list with the line and column of those pads.
     '''

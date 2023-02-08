@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 
-def N_obs_RPC(col_top, col_bottom, lin_top, lin_bottom, v_max, save_path):
+def N_obs_RPC(col_top, col_bottom, lin_top, lin_bottom, v_max:int , save_path:str):
     """
     Given the columns and lines of each pad, it gives the value of the number of events for each of the RPC pad.
     It also returns a 2D histogram with these values.

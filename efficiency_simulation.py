@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+Lx = 15
+Ly = 19
+h = 203
+
 def generate_angle(angle = True):
     """
     Generate the two angles corresponding to the muon direction, one zenith angle 
@@ -55,12 +59,12 @@ def hit_evt_pad(coord_pad:tuple,ze_angle:float,az_angle:float):
         
     hit = False
     # Condition to determine wheter the muon hit
-    if ((x_inter < x_lim and 0 < x_inter) and (y_inter < y_lim and 0 < y_inter)):
+    if ((x_inter < Lx*8 and 0 < x_inter) and (y_inter < Ly*8 and 0 < y_inter)):
         hit = True
     
     return hit
 
-def efficiency_sim(n_events):
+def efficiency_sim(n_events = 10**6):
     """
     Calculate the efficiency per pad for a given number of events.
     """
