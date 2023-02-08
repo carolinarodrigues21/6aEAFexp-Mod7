@@ -1,3 +1,5 @@
+import numpy as np 
+
 def prepare_array_efficiency(array_efficiencies:list):
     """
     Since different numerations of the pads were used, at the end it is necessary to 
