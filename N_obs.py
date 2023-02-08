@@ -36,7 +36,7 @@ def N_obs_RPC(col_top, col_bottom, lin_top, lin_bottom, v_max, save_path):
     ax1.set_ylabel('Column')
     ax2.set_xlabel ('Line')
 
-    fig.suptitle("2D Pad Map of the RPCs - pre-process-linha1-colunas8-a-5.txt")
+    fig.suptitle("2D Pad Map of the RPCs")
     plt.savefig(save_path)
     plt.show()
     return count_pads_top, count_pads_bot
