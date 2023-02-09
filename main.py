@@ -20,7 +20,7 @@ data_file_name = 'pre-process-coluna1-linhas8-a-3.txt'
 Npad_top, Npad_bot, line_top, col_top, line_bot, col_bot = getINFO(data_file_name)
 
 v_max = 100                                         # max value for the color range
-hist2D_save_path = 'results\example.png'     # relative path for saving the 2D histogram for that file
+hist2D_save_path = 'example.png'     # relative path for saving the 2D histogram for that file
 title = 'Title'
 
 N_obs_top = hist2D_and_values(col_top,line_top, v_max, hist2D_save_path, title)
