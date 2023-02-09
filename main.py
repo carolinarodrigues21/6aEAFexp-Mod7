@@ -11,7 +11,7 @@ from flux import *
 Lx = 15/100 #cm
 Ly = 19/100 #cm
 H = 203/100 #cm
-dt = 6484.156421 #s
+dt = 14311.550934 #s
 A = Lx*Ly*64 #cm^2
 
 data_file_name = 'result.txt' 
