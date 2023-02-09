@@ -1,6 +1,34 @@
 from matplotlib import pyplot as plt
 
-def hist2D_and_values(x, y, v_max:int , save_path:str, title:str):
+def hist1D_comparing(N_obs,N_tot):
+
+    nObs = []
+    nTot = []
+    for j in range(64):
+        for i in range(N_obs[j]):
+            nObs.append(j)
+        
+        for k in range(int(N_tot[j])):
+            nTot.append(j)
+
+    fig, (ax1,ax2) = plt.subplots(1,2,  figsize = [20,10])
+    ax1.hist(nObs, bins=63)
+    ax2.hist(nTot, bins=63)
+    
+
+    ax1.set_title("Eventos Medidos")
+    ax2.set_title("Eventos Totais")
+
+    ax1.set_xlabel('pads')
+    ax1.set_ylabel('eventos')
+    ax2.set_xlabel ('pads')
+
+    fig.suptitle("Comparação antes e depois da correção geométrica")
+    return plt.show()
+
+
+
+def hist2D_and_values(col, lin, v_max:int , save_path:str, title:str):
     """
     Creates a 2D histogtam with the value for each cell and returns that value.
     

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from info_file import *
-from hist2D_and_values import *
+from graphs import *
 
 def getVOLT(filename):
     '''Gets the values of the voltages peak at a PMT.

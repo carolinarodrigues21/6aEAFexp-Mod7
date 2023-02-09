@@ -4,7 +4,7 @@ import numpy as np
 
 from info_file import * 
 from efficiency_simulation import *
-from hist2D_and_values import *
+from graphs import *
 from flux import *
 
 #RPC Parameters
@@ -18,7 +18,7 @@ data_file_name = 'result.txt'
 
 Npad_top, Npad_bot, line_top, col_top, line_bot, col_bot = getINFO(data_file_name)
 
-v_max = 3000                                        # max value for the color range
+v_max = 13000                                      # max value for the color range
 hist2D_save_path = 'example.png'     # relative path for saving the 2D histogram for that file
 title = '2D map 71k'
 
@@ -31,7 +31,11 @@ else:
     eff_nEvents = 1
     efficiency = efficiency_sim(eff_nEvents,Lx,Ly,H)
 
-flux_4each_pad = flux_pad(A,dt,efficiency,N_obs_top)
+# flux_4each_pad = flux_pad(A,dt,list(efficiency.values()),N_obs_top)
+
+# nTotalPad = N_total_pad(N_obs_top,list(efficiency.values()))
+
+# hist1D_comparing(N_obs_top,nTotalPad)
 
 #plt.plot(range(1,65), flux_4each_pad)
 #plt.ylim(0,0.001)
