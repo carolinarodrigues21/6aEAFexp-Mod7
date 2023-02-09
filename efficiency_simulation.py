@@ -11,13 +11,12 @@ A = Lx*Ly*64 #cm^2
 def generate_angle(angle = True):
     """
     Generate the two angles corresponding to the muon direction, one zenith angle 
-    and one azimuthal angle. More precisely, the cosine of the zenith angle is 
-    generated (we want a uniformely distributed angles in 3-D).
+    and one azimuthal angle.
     """
     
     if (angle):
         
-        zenith_angle = random.uniform(0,1)
+        zenith_angle = np.arccos(random.uniform(0,1))
         
         return zenith_angle
     else:
@@ -79,14 +78,12 @@ def efficiency_sim(Lx:float,Ly:float,h:float, n_events = 10**6):
     for pad in range(1,65):
         
         coord_pad = coordinates_pad(pad,Lx,Ly,h)
-        az_angles_pad = list() # Not used at the end
-        ze_angles_pad = list() # Not used at the end
         
         count_hits_pad = 0
         for evt in range(0,n_events):
             # Direction of the muon
             az_angle = generate_angle(False)
-            ze_angle = np.arccos(generate_angle()) # Remember that we generated a random num. bet. 0-1.
+            ze_angle = generate_angle() # Remember that we generated a random num. bet. 0-1.
             
             hit_evt = hit_evt_pad(coord_pad,ze_angle,az_angle)
             if (hit_evt):
