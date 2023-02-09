@@ -1,7 +1,6 @@
 import math as mt
 from matplotlib import pyplot as plt
 import numpy as np
-from seaborn import *
 
 from info_file import * 
 from efficiency_simulation import *
@@ -9,13 +8,13 @@ from hist2D_and_values import *
 from flux import *
 
 #RPC Parameters
-Lx = 15 #cm
-Ly = 19 #cm
-H = 203 #cm
-dt = 30420 #s
+Lx = 15/100 #cm
+Ly = 19/100 #cm
+H = 203/100 #cm
+dt = 6484.156421 #s
 A = Lx*Ly*64 #cm^2
 
-data_file_name = '71804-engrev.txt' 
+data_file_name = 'result.txt' 
 
 Npad_top, Npad_bot, line_top, col_top, line_bot, col_bot = getINFO(data_file_name)
 
@@ -34,11 +33,12 @@ else:
 
 flux_4each_pad = flux_pad(A,dt,efficiency,N_obs_top)
 
-# plt.plot(range(1,65), flux_4each_pad)
-# plt.ylim(0,0.001)
-# plt.show()
+#plt.plot(range(1,65), flux_4each_pad)
+#plt.ylim(0,0.001)
+#plt.show()
 
 
 final_flux = flux_total(A,dt,efficiency,N_obs_top)
 print(N_obs_top)
 print(final_flux)
+#print(flux_4each_pad)
