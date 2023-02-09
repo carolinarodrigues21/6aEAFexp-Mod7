@@ -2,7 +2,7 @@ import numpy as np
 
 def N_total_pad(N_obs_pad:list,eff_pad:list):
     """
-    Final number of muons for all pads considering the efficiency correction.
+    Final number of muons for each pads considering the efficiency correction.
     """
     
     N = []
