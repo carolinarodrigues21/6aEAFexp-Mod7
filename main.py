@@ -1,6 +1,7 @@
 import math as mt
 from matplotlib import pyplot as plt
 import numpy as np
+from seaborn import *
 
 from info_file import * 
 from efficiency_simulation import *
@@ -14,14 +15,13 @@ H = 203 #cm
 dt = 30420 #s
 A = Lx*Ly*64 #cm^2
 
-# data_file_name = 'example-run.txt'
-data_file_name = 'pre-process-coluna1-linhas8-a-3.txt'
+data_file_name = '71804-engrev.txt' 
 
 Npad_top, Npad_bot, line_top, col_top, line_bot, col_bot = getINFO(data_file_name)
 
-v_max = 100                                         # max value for the color range
+v_max = 3000                                        # max value for the color range
 hist2D_save_path = 'example.png'     # relative path for saving the 2D histogram for that file
-title = 'Title'
+title = '2D map 71k'
 
 N_obs_top = hist2D_and_values(col_top,line_top, v_max, hist2D_save_path, title)
 eff_nEvents_1M = True
@@ -31,6 +31,13 @@ if eff_nEvents_1M:
 else:
     eff_nEvents = 1
     efficiency = efficiency_sim(eff_nEvents,Lx,Ly,H)
+
+flux_4each_pad = flux_pad(A,dt,efficiency,N_obs_top)
+
+# plt.plot(range(1,65), flux_4each_pad)
+# plt.ylim(0,0.001)
+# plt.show()
+
 
 final_flux = flux_total(A,dt,efficiency,N_obs_top)
 print(N_obs_top)

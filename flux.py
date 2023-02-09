@@ -1,5 +1,15 @@
 import numpy as np 
 
+def flux_pad(A:float,dt:float, eff_pad:list,N_obs_pad:list):
+    "List of flux value for each RPC pad."
+
+    flux_pad = []
+    for i in range(len(eff_pad)):
+        flux_pad.append(N_obs_pad[i]/(A*dt*eff_pad[i]))
+    
+    return flux_pad
+
+
 def N_total(N_obs_pad:list,eff_pad:list)->float:
     """
     Final number of muons for all pads considering the efficiency correction.
