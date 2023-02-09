@@ -2,10 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
-Lx = 15
-Ly = 19
-h = 203
-
 def generate_angle(angle = True):
     """
     Generate the two angles corresponding to the muon direction, one zenith angle 
@@ -24,20 +20,23 @@ def generate_angle(angle = True):
         
         return azimuthal_angle 
 
-def coordinates_pad(pad_number):
+def coordinates_pad(pad_number:int,Lx:float,Ly:float,h:float):
     """
     Given a pad number, i.e., a number between 0 and 63, the coordinates of the
     center of the pad are calculated.
     """
-    rpc = np.array([0 for ii in range(64)])
-    rpc[pad_number] = 1 
-    rpc = rpc.reshape(8,8)
-    idx_x = int(np.where(rpc == 1)[0])+1
-    idx_y = int(np.where(rpc == 1)[1])+1
     
-    coord_x = Lx/2 + (idx_y-1)*Lx
-    coord_y = Ly/2 + (idx_x-1)*Ly
-    
+    for i in range(1,9):
+        if (pad_number - i)%8 == 0:
+            col =(pad_number - i)/8 + 1
+        else:
+            i+= 1
+            
+    fil = 8 - (8*col - pad_number)
+
+    coord_x = Lx*(col - 0.5)
+    coord_y = Ly*(fil - 0.5)
+
     return (coord_x,coord_y,h)
 
 def hit_evt_pad(coord_pad:tuple,ze_angle:float,az_angle:float):
@@ -64,16 +63,16 @@ def hit_evt_pad(coord_pad:tuple,ze_angle:float,az_angle:float):
     
     return hit
 
-def efficiency_sim(n_events = 10**6):
+def efficiency_sim(n_events = 10**6,Lx:float,Ly:float,h:float):
     """
     Calculate the efficiency per pad for a given number of events.
     """
     
     pads_dict = dict()
 
-    for pad in range(0,64):
+    for pad in range(1,65):
         
-        coord_pad = coordinates_pad(pad)
+        coord_pad = coordinates_pad(pad,Lx,Ly,h)
         az_angles_pad = list() # Not used at the end
         ze_angles_pad = list() # Not used at the end
         
