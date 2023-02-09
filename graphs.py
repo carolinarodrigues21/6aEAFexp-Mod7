@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 
 def hist1D_comparing(N_obs,N_tot):
+    "Creates 2 histograms comparing the nunber of events observed and the total events"
 
     nObs = []
     nTot = []
@@ -15,13 +16,12 @@ def hist1D_comparing(N_obs,N_tot):
     ax1.hist(nObs, bins=63)
     ax2.hist(nTot, bins=63)
     
-
     ax1.set_title("Eventos Medidos")
     ax2.set_title("Eventos Totais")
 
-    ax1.set_xlabel('pads')
-    ax1.set_ylabel('eventos')
-    ax2.set_xlabel ('pads')
+    ax1.set_xlabel('Pads')
+    ax1.set_ylabel('Eventos')
+    ax2.set_xlabel ('Pads')
 
     fig.suptitle("Comparação antes e depois da correção geométrica")
     return plt.show()
@@ -36,7 +36,7 @@ def hist2D_and_values(col, lin, v_max:int , save_path:str, title:str):
     fig, ax1 = plt.subplots(figsize = [10,5])
 
     ax1.set_aspect("equal")
-    hist, xbins, ybins, im = ax1.hist2d(x, y, bins=[8,8],vmin=0, vmax=v_max, cmap="YlOrRd")
+    hist, xbins, ybins, im = ax1.hist2d(col, lin, bins=[8,8],vmin=0, vmax=v_max, cmap="YlOrRd")
 
     values = []
 
