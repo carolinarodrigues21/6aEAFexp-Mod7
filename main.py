@@ -6,23 +6,28 @@ from info_file import *
 from efficiency_simulation import *
 from graphs import *
 from flux import *
+from total_time import *
 
 #RPC Parameters
 Lx = 15/100 #cm
 Ly = 19/100 #cm
 H = 203/100 #cm
-dt = 14311.550934 #s
 A = Lx*Ly*64 #cm^2
+a_pad = Lx*Ly
+dt = total_time('run_1M_09_02_2023/tempo.txt')
 
 data_file_name = 'result.txt' 
 
 Npad_top, Npad_bot, line_top, col_top, line_bot, col_bot = getINFO(data_file_name)
 
-v_max = 13000                                      # max value for the color range
-hist2D_save_path = 'example.png'     # relative path for saving the 2D histogram for that file
-title = '2D map 71k'
+v_max = 13000                        # max value for the color range
+hist2D_save_path1 = 'CountRPCtop.png'     # relative path for saving the 2D histogram for that file
+hist2D_save_path2 = 'CountRPCdown.png'
+title1 = 'Contagem por Pad RPC superior'
+title2 = 'Contagem por Pad RPC inferior'
 
-N_obs_top = hist2D_and_values(col_top,line_top, v_max, hist2D_save_path, title)
+N_obs_top = hist2D_and_values(col_top,line_top, v_max, hist2D_save_path1, title1)
+N_obs_bot = hist2D_and_values(col_bot,line_bot, v_max, hist2D_save_path2, title2)
 eff_nEvents_2M = True
 
 if eff_nEvents_2M:
@@ -31,18 +36,17 @@ else:
     eff_nEvents = 1
     efficiency = efficiency_sim(eff_nEvents,Lx,Ly,H)
 
-# flux_4each_pad = flux_pad(A,dt,list(efficiency.values()),N_obs_top)
+flux_4each_pad = flux_pad(a_pad,dt,list(efficiency.values()),N_obs_top)
+print(flux_4each_pad)
 
-# nTotalPad = N_total_pad(N_obs_top,list(efficiency.values()))
+nTotalPad = N_total_pad(N_obs_top,list(efficiency.values()))
 
-# hist1D_comparing(N_obs_top,nTotalPad)
+hist1D_comparing(N_obs_top,nTotalPad)
 
 #plt.plot(range(1,65), flux_4each_pad)
 #plt.ylim(0,0.001)
 #plt.show()
 
-
 final_flux = flux_total(A,dt,efficiency,N_obs_top)
 print(N_obs_top)
 print(final_flux)
-#print(flux_4each_pad)
