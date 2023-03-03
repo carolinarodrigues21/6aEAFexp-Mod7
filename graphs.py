@@ -1,5 +1,21 @@
 from matplotlib import pyplot as plt
 
+def hist1D_count(nEvento1, nEvento2):
+
+    fig, (ax1,ax2) = plt.subplots(2,1,  figsize = [10,20])
+    ax1.hist(nEvento1, bins=64)
+    ax2.hist(nEvento2, bins=63)
+    
+    ax1.set_title("RPC superior")
+    ax2.set_title("RPC inferior")
+
+    ax1.set_xlabel('Número das pads')
+    ax1.set_ylabel('Contagem de Eventos')
+    ax2.set_xlabel ('Número das pads')
+    plt.savefig('Coroa')
+    
+    return plt.show()
+
 def hist1D_comparing(N_obs,N_tot):
     "Creates 2 histograms comparing the nunber of events observed and the total events"
 
@@ -46,8 +62,8 @@ def hist2D_and_values(col, lin, v_max:int , save_path:str, title:str):
                     color="black", ha="center", va="center", fontsize = 'x-small')
             values.append(int(hist.T[j,i]))
 
-    ax1.set_xlabel('Column')
-    ax1.set_ylabel('Line')
+    ax1.set_xlabel('Coluna')
+    ax1.set_ylabel('Linha')
 
     fig.suptitle(title)
     plt.savefig(save_path)

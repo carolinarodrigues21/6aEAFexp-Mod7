@@ -18,16 +18,21 @@ dt = total_time('run_1M_09_02_2023/tempo.txt')
 
 data_file_name = 'result.txt' 
 
-Npad_top, Npad_bot, line_top, col_top, line_bot, col_bot = getINFO(data_file_name)
+Npad_bot, Npad_top, line_bot, col_bot, line_top, col_top = getINFO(data_file_name)
 
-v_max = 13000                        # max value for the color range
+v_max = 13000                             # max value for the color range
 hist2D_save_path1 = 'CountRPCtop.png'     # relative path for saving the 2D histogram for that file
 hist2D_save_path2 = 'CountRPCdown.png'
+hist1D_save_path1 = 'CountRPCtop1D.png'
+hist1D_save_path2 = 'CountRPCdown1D.png'
 title1 = 'Contagem por Pad RPC superior'
 title2 = 'Contagem por Pad RPC inferior'
 
 N_obs_top = hist2D_and_values(col_top,line_top, v_max, hist2D_save_path1, title1)
 N_obs_bot = hist2D_and_values(col_bot,line_bot, v_max, hist2D_save_path2, title2)
+
+hist1D_count(Npad_top, Npad_bot)
+
 eff_nEvents_1M = True
 
 if eff_nEvents_1M:
@@ -41,7 +46,7 @@ print(flux_4each_pad)
 
 nTotalPad = N_total_pad(N_obs_top,list(efficiency.values()))
 
-hist1D_comparing(N_obs_top,nTotalPad)
+# hist1D_comparing(N_obs_top,nTotalPad)
 
 #plt.plot(range(1,65), flux_4each_pad)
 #plt.ylim(0,0.001)
